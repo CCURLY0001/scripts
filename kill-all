@@ -1,0 +1,4 @@
+for i in $(docker ps -qa)
+do
+	docker rm -f $i
+done
