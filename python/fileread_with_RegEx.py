@@ -2,7 +2,7 @@ import sys
 import os
 import re
 
-filepath = str(input('Input Filepath: '))
+filepath = input('Input Filepath: ')
 
 pattern = re.compile("(?<=\>).+?(?=\<)")
 
