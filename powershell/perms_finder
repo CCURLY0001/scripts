@@ -1,0 +1,5 @@
+# For each Name in dir results, run icacls on said Name
+
+foreach ($Name in dir) {
+icacls "$Name"
+}
