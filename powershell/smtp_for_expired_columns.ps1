@@ -34,8 +34,10 @@ $params = @{ 'SmtpServer' = 'smtp.gmail.com'
              'Body' = 'Test Body'
            }
 
+
 # Variable to count total emails submitted
 $emailsSubmitted = 0
+
 
 # For startRow while not above rowTotal, run the loop and increment by 1
 for ( $startRow ; $startRow -le $rowTotal ; $startRow++)
@@ -56,9 +58,14 @@ for ( $startRow ; $startRow -le $rowTotal ; $startRow++)
 
             # Submit email and increment by 1
             Send-MailMessage -UseSsl @params
+            $ws.Cells($startRow,$statusCol) = 'Email submitted'
+            $wb.SaveAs()
+
             $emailsSubmitted++
         }
     }
 }
+
+$excel.Quit()
 
 Write-Host $emailsSubmitted 'emails Submitted!'
