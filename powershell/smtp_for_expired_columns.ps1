@@ -34,20 +34,31 @@ $params = @{ 'SmtpServer' = 'smtp.gmail.com'
              'Body' = 'Test Body'
            }
 
+# Variable to count total emails submitted
+$emailsSubmitted = 0
+
 # For startRow while not above rowTotal, run the loop and increment by 1
 for ( $startRow ; $startRow -le $rowTotal ; $startRow++)
 {
-    # Check the cell at location $startRow,$dateCol for a Date time and determine if less than or equal to $checkDate
-    if ( [DateTime]$ws.Cells($startRow,$dateCol).Text -le $checkDate -and [string]::IsNullOrEmpty(($ws.Cells($startRow,$statusCol).Text)))
+    # Check for existing status, otherwise, skips the row
+    if ([string]::IsNullOrEmpty(($ws.Cells($startRow,$statusCol).Text)))
     {
-        # Set Customer Name as variable (saves on typing)
-        # Set inside of if statement to only write to variable when needed
-        $custName = $ws.Cells($startRow,1).Text
+        # Check the cell at location $startRow,$dateCol for a Date time and determine if less than or equal to $checkDate
+        if ( [DateTime]$ws.Cells($startRow,$dateCol).Text -le $checkDate )
+        {
+            # Set Customer Name as variable (saves on typing)
+            # Set inside of if statement to only write to variable when needed
+            $custName = $ws.Cells($startRow,1).Text
 
-        # Set Subject and Body paramaters based on customer name.
-        $params['Subject'] = $custName + " needs a SonicWALL License Renewal!"
-        $params['Body'] = $custName + " needs a SonicWALL License Renewal! `nLicense expires on " + $ws.Cells($startRow,$dateCol).Text
+            # Set Subject and Body paramaters based on customer name.
+            $params['Subject'] = $custName + " needs a SonicWALL License Renewal!"
+            $params['Body'] = $custName + " needs a SonicWALL License Renewal! `nLicense expires on " + $ws.Cells($startRow,$dateCol).Text
 
-        Send-MailMessage -UseSsl @params
+            # Submit email and increment by 1
+            Send-MailMessage -UseSsl @params
+            $emailsSubmitted++
+        }
     }
 }
+
+Write-Host $emailsSubmitted 'emails Submitted!'
