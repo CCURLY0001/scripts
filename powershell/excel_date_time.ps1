@@ -25,7 +25,7 @@ for ( $startRow ; $startRow -le $rowTotal ; $startRow++)
     {
         Write-Host $ws.Cells($startRow,1).Text needs a SonicWALL License Renewal!
     }
-
+    # This is a True Fals test and will be taken out
     else
     {
         Write-Host "poopoopeepee"
