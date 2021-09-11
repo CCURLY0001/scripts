@@ -12,9 +12,10 @@ $curDate = Get-Date
 $checkDate = [DateTime]$curDate.AddDays(30)
 
 
-# Gather accurate Expiration Date Column
+# Gather accurate Expiration Date Column and Status Column
 $dateCol = Read-Host "Input Date Column: "
 $wsDateCol = $ws.Columns($dateCol)
+$statusCol = Read-Host "Input Status Column: "
 
 
 # Establish row to start reading data from and how many total rows as casted integers
@@ -27,25 +28,25 @@ $wsDateCol = $ws.Columns($dateCol)
 $params = @{ 'SmtpServer' = 'smtp.gmail.com'
              'Port' = 587
              'Credential'= Get-Credential
-             'From' = 'First Last <example@example.com>'
-             'To' = 'First Last <example@example.com>'
-             'Subject' = ''
-             'Body' = ''
+             'From' = 'Cristian Colon <cacolon94@gmail.com>'
+             'To' = 'Cristian Colon <cacolon94@gmail.com>'
+             'Subject' = 'Test Subject'
+             'Body' = 'Test Body'
            }
 
 # For startRow while not above rowTotal, run the loop and increment by 1
 for ( $startRow ; $startRow -le $rowTotal ; $startRow++)
 {
     # Check the cell at location $startRow,$dateCol for a Date time and determine if less than or equal to $checkDate
-    if ( [DateTime]$ws.Cells($startRow,$dateCol).Text -le $checkDate )
+    if ( [DateTime]$ws.Cells($startRow,$dateCol).Text -le $checkDate -and [string]::IsNullOrEmpty(($ws.Cells($startRow,$statusCol).Text)))
     {
         # Set Customer Name as variable (saves on typing)
         # Set inside of if statement to only write to variable when needed
         $custName = $ws.Cells($startRow,1).Text
 
         # Set Subject and Body paramaters based on customer name.
-        $params['Subject'] = $custName + " needs a SonicWALL License expiration"
-        $params['Body'] = $custName + " needs a SonicWALL License expiration! `nLicense expires on " + $ws.Cells($startRow,$dateCol).Text
+        $params['Subject'] = $custName + " needs a SonicWALL License Renewal!"
+        $params['Body'] = $custName + " needs a SonicWALL License Renewal! `nLicense expires on " + $ws.Cells($startRow,$dateCol).Text
 
         Send-MailMessage -UseSsl @params
     }
