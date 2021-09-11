@@ -28,10 +28,10 @@ $statusCol = Read-Host "Input Status Column: "
 $params = @{ 'SmtpServer' = 'smtp.gmail.com'
              'Port' = 587
              'Credential'= Get-Credential
-             'From' = 'Cristian Colon <cacolon94@gmail.com>'
-             'To' = 'Cristian Colon <cacolon94@gmail.com>'
-             'Subject' = 'Test Subject'
-             'Body' = 'Test Body'
+             'From' = 'First Last <example@example.com>'
+             'To' = 'First Last <example@example.com>'
+             'Subject' = ''
+             'Body' = ''
            }
 
 
