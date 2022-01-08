@@ -1,8 +1,9 @@
 #!/bin/bash
 # Determines power state of a VM based on a Unique Identifier and boots it if not on
+# Designed for ESXi 6.7 U2 and tested on ESXi 6.7 U3
 
 # Designed due to the need of a temporary solution to prevent manual labor and intervention
-# while root cause of a recurring crash is determined.
+# while root cause of a recurring crash is determined. Set to run in cron jobs on
 
 # CHANGE VMUNIQUEIDENTIFIER AS NEEDED
 # Run vim-cmd vmsvc/getallvms to get a list of all vms and choose an identifying pattern
