@@ -1,1 +1,1 @@
-Get-CimInstance -ClassName Win32_Service -Property Name, DisplayName, StartName, StartMode
+Get-CimInstance -ClassName Win32_Service | Format-List Name, DisplayName, StartMode, StartName, Description
