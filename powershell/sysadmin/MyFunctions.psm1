@@ -29,3 +29,12 @@ function Invoke-DcDiag {
         [pscustomobject]$obj
     }
 }
+
+function Get-PublicIP {
+    (Invoke-WebRequest ifconfig.me/ip).Content
+}
+
+function Get-Services {
+    Get-CimInstance -ClassName Win32_Service | 
+    Select-Object Name, DisplayName, StartMode, State, StartName, Description
+}
