@@ -3,7 +3,6 @@ Powershell Module File for Windows Sysadmin
 Author: Cristian Colon
 #>
 
-# Define Invoke-DcDiag and accept 1 String paramater $DomainControllers
 function Invoke-DcDiag {
 
     <#
