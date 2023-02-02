@@ -4,7 +4,7 @@ function Invoke-DcDiag {
 
 <#
 .SYNOPSIS
-    Returns Domain Health as operatable Powershell Objects. 
+    Returns Domain Health as interactable Powershell Objects. 
     This is equivalent to running dcdiag /s: on each provided DC.
 
 .DESCRIPTION
