@@ -26,7 +26,7 @@ ForEach-Object {
     try {
         Test-Connection -ComputerName $_.DNSHostName -Count 1 -ErrorAction Stop | Out-Null
 
-        Invoke-Command -ComputerName $_.DNSHostName -Credential $cred -ScriptBlock $scriptBlock |
+        Invoke-Command -ComputerName $_.DNSHostName -Credential $cred -ScriptBlock $scriptBlock
     }
 
     catch {
