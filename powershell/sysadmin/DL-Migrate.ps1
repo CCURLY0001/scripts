@@ -1,0 +1,11 @@
+
+$DGName = Read-Host("Distribution Group to Migrate: ")
+$NewDGName = Read-Host("New Distribution Group Name: ")
+
+$DGMembers = Get-DistributionGroupMember $DGName | Select PrimarySmtpAddress
+
+New-DistributionGroup $NewDGName
+
+foreach ($DGmember in $DGMembers) {
+    Add-DistributionGroupMember "$NewDGName" -Member $DGmember.PrimarySmtpAddress
+}
