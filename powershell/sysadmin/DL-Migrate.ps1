@@ -2,7 +2,7 @@
 $DGName = Read-Host("Distribution Group to Migrate: ")
 $NewDGName = Read-Host("New Distribution Group Name: ")
 
-$DGMembers = Get-DistributionGroupMember $DGName | Select PrimarySmtpAddress
+$DGMembers = Get-DistributionGroupMember $DGName | Select-Object PrimarySmtpAddress
 
 New-DistributionGroup $NewDGName
 
