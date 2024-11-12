@@ -30,3 +30,31 @@ function Get-Services {
     Get-CimInstance -ClassName Win32_Service | 
     Select-Object Name, DisplayName, StartMode, State, StartName, Description
 }
+
+function Add-UserToGroup {
+    param (
+        [string]$userId,
+        [string[]]$groupId
+    )
+
+    $failedGroups = @()
+
+    foreach ($group in $groupId) {
+
+        try {
+            New-MgGroupMember -GroupId $group -DirectoryObjectId $userId -ErrorAction Stop
+            Write-Host "Successfully added user to group with ID: $group" -ForegroundColor Green
+        }
+
+        catch {
+            Write-Host "Failed to add user to group with ID: $group. Error: $_" -ForegroundColor Red
+            $failedGroups += $group
+        }
+    }
+
+    Write-Host "Failed Groups Listed Below:"
+    Write-Host ""
+    
+    # Fix the return of $failedGroups to be used in other functions.
+    return $failedGroups
+}
