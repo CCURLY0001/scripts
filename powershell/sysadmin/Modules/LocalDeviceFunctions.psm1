@@ -1,5 +1,5 @@
 <#
-Powershell Module File for Windows Sysadmin
+Powershell Module File for Local Windows Sysadmin
 
 Author: Cristian Colon
 

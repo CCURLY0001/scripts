@@ -1,4 +1,4 @@
-### Migrates Distribution Group from On-Prem Group to Exchange Online Group
+<# Migrates Distribution Group from On-Prem Group to Exchange Online Group #>
 
 $DGName = Read-Host("Distribution Group to Migrate: ")
 $NewDGName = Read-Host("New Distribution Group Name: ")

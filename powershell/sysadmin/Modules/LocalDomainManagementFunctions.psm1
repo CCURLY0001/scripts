@@ -1,3 +1,12 @@
+<#
+Powershell Module File for Windows Local Domain Administration
+
+Author: Cristian Colon
+
+Collection of functions / scripts I've had a desire to develop to better support Information Technology Operations 
+
+#>
+
 ## Get-Domain-Health for all provided Domain Controllers.
 
 function Invoke-DcDiag {

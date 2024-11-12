@@ -1,10 +1,14 @@
 <# 
+
 Connecting to Exchange Online
 Written by: Cristian Colón
 Date: 01/10/2023
+Note: Mostly written because I keep forgetting how to run this process when it's been a while
+
 #>
 
 <#
+
 First time powershell setup should be as follows:
 
 Trust PS Gallery if not already trusted
@@ -13,6 +17,7 @@ Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
 
 Install Exchange Online if not already installed
 Install-Module -Name ExchangeOnlineManagement
+
 #>
 
 # Import Exchange Online

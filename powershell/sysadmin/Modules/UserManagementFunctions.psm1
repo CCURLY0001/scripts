@@ -1,5 +1,5 @@
 <#
-Powershell Module File for Windows Domain Administration
+Powershell Module File for Windows User (Domain & MgGraph) Administration
 
 Author: Cristian Colon
 
@@ -66,6 +66,14 @@ function Add-UserToGroup {
 }
 
 <# SECTION 2: USER MAINTENANCE & VERIFICATION #>
+
+<# SECTION 2a: LOCAL USER/DIRECTORY MAINTENANCE #>
+
+<# SECTION 2b: CLOUD USER/DIRECTORY MAINTENANCE #>
+function Get-O365Licenses{
+Get-MgUser -All -Property Id, DisplayName, UserPrincipalName, AssignedPlans |
+Select-Object -Property Id, DisplayName, UserPrincipalName, AssignedPlans
+}
 
 <# SECTION 3: USER TERMINATION #>
 function Get-GraphUser{
