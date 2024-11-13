@@ -1,1 +1,9 @@
 https://code.visualstudio.com/docs/python/python-tutorial
+
+VSCode Intro Tutorial Completed
+Notes on what was accomplished:
+
+Verify Python Extension and debugger were setup
+Determine how to switch debugger
+Creating and activating python dev environment
+Creating and how to install dependencies (requirements.txt)
